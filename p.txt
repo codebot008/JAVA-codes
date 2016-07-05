@@ -1,0 +1,66 @@
+DevOps, like any new technology or tech related movement that comes to the industry, has become a buzzword.
+DevOps is in principle, the movement to bring Development and Operations closer – communicate and collaborate across Dev and Ops.
+Stresses communication, collaboration and integration between software developers and Information Technology (IT) professionals.
+Two key components of any DevOps solution
+Continuous Integration
+Continuous Delivery
+This build automation tool has been developed in pursuit of adopting Continuous Delivery.
+This will ensure faster delivery of new features to customers.
+
+
+One of a chain of components being adopted to achieve Continuous Integration and Delivery for database changes by developers at TTS – COTS.
+In fact, the tool has been made generic and configurable enough to be used by any team for auto-deploying database changes.
+It aims to automate the change deployment process.
+
+
+.lst file is created for each database or instance to release the changes and attach them to a Service Now Ticket to promote it in UAT and Production.
+Librarian copies the .lst file and the concerned .sql files in the Service Now Ticket to some directory on UAT/Production Environment.
+Tivoli Job runs the db_deployment.sh file to apply the database changes as per the files listed in the .lst files. 
+
+
+GUI based automated build and deployment.
+Efficient and error free deployment.
+No external team dependency (Librarian / Linux SP).
+
+
+The adopted architecture consists of three components:
+Validation
+Build
+Release
+
+
+Release file contains the change files to be deployed in the current release.
+DDLs directory contains all one-time runnable files such as table, constraint and index definitions.
+Reference directory contains all the DDL files deployed in previous releases to serve as reference.
+Code directory contains all the re-runnable files such as packages, functions, views, materialized views, triggers and stored procedures.
+Config directory contains all the DML files for the corresponding tables in the DDLs directory.
+Released directory contains all the DML files and the release files of previous releases.
+
+
+Responsible for performing validation of the files to be deployed on pre-defined aspects such as 
+Naming Convention
+Whether any file contains multiple units of compilable code such as functions, procedures or packages, basically PL/SQL blocks.
+Prior to performing the aforesaid checks, the validator also checks for the existence of the repository directories and the release file.
+A consolidated validation report and error log is generated in the end that indicates:
+Date and time of the run of the tool
+Contents of the release file
+Number of files scanned
+Total Number of errors
+Error log
+
+
+Responsible primarily for creating the database/instance wise tar files containing the change files mentioned in the release file  and the .lst files.
+
+Responsible for changing the state of the repository post a release.
+Records the changes and commits of the current release.
+
+Challenges
+Making the code generic enough to be used across teams.
+Designing the entire code to achieve efficiency while maintaining readability, maintainability and portability.
+Responding to changes in functional requirements mid-development.
+Anticipating and handling inconsistencies in input data, even at production level.
+Takeaways
+Knowledge of good programming practices.
+Ability to document software.
+Value of robust code design.
+Working on a project as a team with external dependencies.
